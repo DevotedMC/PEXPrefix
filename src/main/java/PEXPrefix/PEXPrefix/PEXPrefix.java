@@ -15,6 +15,6 @@ public final class PEXPrefix extends JavaPlugin implements Listener {
 	
 	@EventHandler
 	public void onChat(AsyncPlayerChatEvent e) {
-		e.setFormat("[" + PermissionsEx.getUser(e.getPlayer()).getPrefix() + "]<%1$s>%1$s");
+		e.setFormat("[" + PermissionsEx.getUser(e.getPlayer()).getPrefix() + "]<%1$s>%2$s");
 	}
 }
