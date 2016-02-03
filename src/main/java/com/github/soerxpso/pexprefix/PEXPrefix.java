@@ -1,4 +1,4 @@
-package PEXPrefix.PEXPrefix;
+package com.github.soerxpso.pexprefix;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.EventHandler;
