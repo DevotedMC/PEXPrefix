@@ -25,17 +25,17 @@ public final class PEXPrefix extends JavaPlugin implements Listener {
 			prefixFormat = config.getString("prefix");
 		}
 		if(config.contains("normal")) {
-			prefixFormat = config.getString("normal");
+			normalFormat = config.getString("normal");
 		}
 	}
 	
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void onChat(AsyncPlayerChatEvent e) {
 		if(PermissionsEx.getUser(e.getPlayer()).getPrefix() != "") {
-			e.setFormat(prefixFormat.replace("%3$s", PermissionsEx.getUser(e.getPlayer()).getPrefix()));
+			String format = prefixFormat.replace("%3$s", PermissionsEx.getUser(e.getPlayer()).getPrefix());
+			e.setFormat(format);
 		}else {
 			e.setFormat(normalFormat);
 		}
-		System.out.println(e.getFormat());
 	}
 }
