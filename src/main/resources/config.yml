@@ -1,0 +1,4 @@
+prefix: "[%3$s] <%1$s> %2$s"
+normal: "<%1$s> %2$s"
+convertFormat: true
+convertMessage: false

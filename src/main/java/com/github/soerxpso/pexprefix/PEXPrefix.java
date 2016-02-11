@@ -1,5 +1,6 @@
 package com.github.soerxpso.pexprefix;
 
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -31,11 +32,23 @@ public final class PEXPrefix extends JavaPlugin implements Listener {
 	
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void onChat(AsyncPlayerChatEvent e) {
+		getLogger().info("PEXPrefix caught chat event: " + e.getMessage());
 		if(PermissionsEx.getUser(e.getPlayer()).getPrefix() != "") {
 			String format = prefixFormat.replace("%3$s", PermissionsEx.getUser(e.getPlayer()).getPrefix());
-			e.setFormat(format);
+			if (config.getBoolean("convertFormat", false)) {
+				e.setFormat(doColors(format));
+			}
 		}else {
-			e.setFormat(normalFormat);
+			if (config.getBoolean("convertFormat", false)) {
+				e.setFormat(doColors(normalFormat));
+			}
 		}
+		if (config.getBoolean("convertMessage", false)) {
+			e.setMessage(doColors(e.getMessage()));
+		}
+	}
+
+	public String doColors(String str) {
+		return str.replace('&', ChatColor.COLOR_CHAR);
 	}
 }
